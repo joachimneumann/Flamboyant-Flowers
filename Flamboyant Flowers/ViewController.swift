@@ -12,21 +12,28 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var imageView: UIImageView!
     
+    var imageIndex = 1
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        imageView.image = UIImage(named: "1")
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        imageIndex += 1
+        if imageIndex == 15 { imageIndex = 1 }
         UIView.transition(with: self.imageView,
-                          duration:0.5,
+                          duration:1.5,
         options: UIView.AnimationOptions.transitionCrossDissolve,
         animations: {
-            self.imageView.image = UIImage(contentsOfFile: "black")
+            self.imageView.image = UIImage(named: "\(self.imageIndex)")
         },
-        completion: {
-            finished in
-            exit(0)
-        })
+        completion: nil
+//{
+//            finished in
+//            exit(0)
+//        }
+    )
     }
     
     override var prefersHomeIndicatorAutoHidden: Bool {
