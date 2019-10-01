@@ -20,7 +20,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="8Nz-Ty-AYf" secondAttribute="bottom" id="5WB-Mg-ndu"/>
                             <constraint firstItem="8Nz-Ty-AYf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="E7U-vW-RAg"/>
