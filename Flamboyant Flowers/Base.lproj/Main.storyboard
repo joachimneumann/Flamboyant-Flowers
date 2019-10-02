@@ -1,57 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Flamboyant_Flowers" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                <viewController wantsFullScreenLayout="YES" id="BYZ-38-t0r" customClass="ViewController" customModule="Flamboyant_Flowers" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="D2W-eD-KM0"/>
+                        <viewControllerLayoutGuide type="bottom" id="mJB-Rc-kpi"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="N5d-cK-biz">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" verticalHuggingPriority="270" translatesAutoresizingMaskIntoConstraints="NO" id="Z50-Qt-VIp" userLabel="TopView">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="399"/>
-                                        <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </view>
-                                    <imageView autoresizesSubviews="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="260" image="1" translatesAutoresizingMaskIntoConstraints="NO" id="8Nz-Ty-AYf">
-                                        <rect key="frame" x="0.0" y="399" width="414" height="20"/>
-                                        <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="20" id="9S1-JK-wmx"/>
-                                        </constraints>
-                                    </imageView>
-                                    <view contentMode="scaleToFill" verticalHuggingPriority="270" translatesAutoresizingMaskIntoConstraints="NO" id="8xI-ci-l4s" userLabel="BottomView">
-                                        <rect key="frame" x="0.0" y="419" width="414" height="399"/>
-                                        <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </view>
-                                </subviews>
-                                <color key="backgroundColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <imageView autoresizesSubviews="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" image="2" translatesAutoresizingMaskIntoConstraints="NO" id="8Nz-Ty-AYf">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z50-Qt-VIp" userLabel="TopView">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
+                                <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="8xI-ci-l4s" firstAttribute="height" secondItem="Z50-Qt-VIp" secondAttribute="height" id="9Ce-yj-I7U"/>
+                                    <constraint firstAttribute="height" constant="100" id="II3-jb-RDV"/>
                                 </constraints>
-                            </stackView>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8xI-ci-l4s" userLabel="BottomView">
+                                <rect key="frame" x="0.0" y="796" width="414" height="100"/>
+                                <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="Hry-sk-RQa"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="N5d-cK-biz" secondAttribute="trailing" id="DWd-OI-zzK"/>
-                            <constraint firstItem="N5d-cK-biz" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="aeh-1M-sbs"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="N5d-cK-biz" secondAttribute="bottom" id="fa4-aS-ikh"/>
-                            <constraint firstItem="N5d-cK-biz" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="oYE-8T-eTc"/>
+                            <constraint firstItem="Z50-Qt-VIp" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="01H-Nk-kih"/>
+                            <constraint firstAttribute="trailing" secondItem="8Nz-Ty-AYf" secondAttribute="trailing" id="Cea-3B-4QM"/>
+                            <constraint firstAttribute="bottom" secondItem="8Nz-Ty-AYf" secondAttribute="bottom" id="DyP-GM-lLq"/>
+                            <constraint firstAttribute="trailing" secondItem="Z50-Qt-VIp" secondAttribute="trailing" id="Hg8-pL-5D0"/>
+                            <constraint firstItem="8xI-ci-l4s" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Nvf-qI-FCD"/>
+                            <constraint firstItem="8Nz-Ty-AYf" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="ZLV-f6-JhH"/>
+                            <constraint firstAttribute="bottom" secondItem="8xI-ci-l4s" secondAttribute="bottom" id="bmY-Po-lYT"/>
+                            <constraint firstAttribute="trailing" secondItem="8xI-ci-l4s" secondAttribute="trailing" id="dFz-Wr-mWE"/>
+                            <constraint firstItem="Z50-Qt-VIp" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="dxf-kB-OkA"/>
+                            <constraint firstItem="8Nz-Ty-AYf" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="nIk-Pt-Osg"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="bottomHeightConstraint" destination="Hry-sk-RQa" id="txT-IG-zuw"/>
+                        <outlet property="bottomView" destination="8xI-ci-l4s" id="CLo-XW-M2w"/>
                         <outlet property="imageView" destination="8Nz-Ty-AYf" id="Fm9-M7-Jez"/>
-                        <outlet property="imageViewHeightConstraint" destination="9S1-JK-wmx" id="LeW-Co-lJK"/>
+                        <outlet property="topHeightConstraint" destination="II3-jb-RDV" id="ISc-Dc-esq"/>
+                        <outlet property="topView" destination="Z50-Qt-VIp" id="APk-bC-wL9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -60,6 +64,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="1" width="500" height="500"/>
+        <image name="2" width="3072" height="4608"/>
     </resources>
 </document>
