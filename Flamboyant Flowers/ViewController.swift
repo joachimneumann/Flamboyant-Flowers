@@ -15,17 +15,25 @@ class ViewController: UIViewController {
     @IBOutlet weak var topHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var bottomHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
     
     var imageIndex = 1
     var imageHeight:CGFloat = 100
     var contraintConstant:CGFloat = 100
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
         imageView.backgroundColor = UIColor.black
         topView.backgroundColor = UIColor.black
         bottomView.backgroundColor = UIColor.black
         imageView.image = nil
+        NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+        timeLabel.isHidden = true
+        dateLabel.isHidden = true
+        nameLabel.isHidden = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -42,7 +50,62 @@ class ViewController: UIViewController {
                           }
                         )
     }
-    
+
+    @objc func updateLabel() {
+        let date = Date()
+        let calendar = Calendar.current
+        let hour = calendar.component(.hour, from: date)
+        let minutes = calendar.component(.minute, from: date)
+        let hourString = String(format: "%02d", hour)
+        let minutesString = String(format: "%02d", minutes)
+        timeLabel.text = hourString + ":" + minutesString
+    }
+
+    func updateTexts() {
+        if UserDefaults.standard.bool(forKey: "enabled_preference_time_and_date") {
+            Timer.scheduledTimer(timeInterval: 1, target: self,
+            selector: #selector(updateLabel), userInfo: nil, repeats: true)
+            updateLabel()
+
+            
+            let dateFormater = DateFormatter()
+            dateFormater.setLocalizedDateFormatFromTemplate("EEEE d MMMM")
+            dateLabel.text =  dateFormater.string(from: Date())
+
+            timeLabel.isHidden = false
+            dateLabel.isHidden = false
+        } else {
+            timeLabel.isHidden = true
+            dateLabel.isHidden = true
+        }
+        if UserDefaults.standard.bool(forKey: "enabled_preference_name") {
+            nameLabel.isHidden = false
+        } else {
+            nameLabel.isHidden = true
+        }
+    }
+
+    var firstTime = true
+    @objc func willEnterForeground(_ animated: Bool) {
+        if firstTime {
+            firstTime = false
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                UIView.transition(with: self.view,
+                                  duration:1.0,
+                                  options: UIView.AnimationOptions.transitionCrossDissolve,
+                animations: {
+                        self.updateTexts()
+                    },
+                    completion: {
+                        finished in
+                    }
+                )
+            }
+        } else {
+            self.updateTexts()
+        }
+    }
+
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         imageIndex += 1
         if imageIndex == 6 { imageIndex = 1 }
