@@ -26,9 +26,19 @@
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
-			<string>Time and Date</string>
+			<string>Time</string>
 			<key>Key</key>
-			<string>enabled_preference_time_and_date</string>
+			<string>enabled_preference_time</string>
+			<key>DefaultValue</key>
+			<false/>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>Date</string>
+			<key>Key</key>
+			<string>enabled_preference_date</string>
 			<key>DefaultValue</key>
 			<false/>
 		</dict>

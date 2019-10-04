@@ -57,7 +57,7 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Z50-Qt-VIp" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="01H-Nk-kih"/>
-                            <constraint firstItem="Vwk-yh-w9r" firstAttribute="top" secondItem="I1y-5l-a6J" secondAttribute="bottom" id="8cO-FT-3h9"/>
+                            <constraint firstItem="Vwk-yh-w9r" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="66.5" id="9Gm-Xt-lHH"/>
                             <constraint firstAttribute="trailing" secondItem="8Nz-Ty-AYf" secondAttribute="trailing" id="Cea-3B-4QM"/>
                             <constraint firstAttribute="bottom" secondItem="8Nz-Ty-AYf" secondAttribute="bottom" id="DyP-GM-lLq"/>
                             <constraint firstItem="nNf-L0-XU5" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="GZ5-Iy-j4S"/>
@@ -81,6 +81,7 @@
                         <outlet property="bottomHeightConstraint" destination="Hry-sk-RQa" id="txT-IG-zuw"/>
                         <outlet property="bottomView" destination="8xI-ci-l4s" id="CLo-XW-M2w"/>
                         <outlet property="dateLabel" destination="Vwk-yh-w9r" id="rJB-tJ-SeQ"/>
+                        <outlet property="dateLabelTopConstraint" destination="9Gm-Xt-lHH" id="s6G-oS-B0f"/>
                         <outlet property="imageView" destination="8Nz-Ty-AYf" id="Fm9-M7-Jez"/>
                         <outlet property="nameLabel" destination="nNf-L0-XU5" id="Xpi-qS-POh"/>
                         <outlet property="timeLabel" destination="I1y-5l-a6J" id="ndx-YA-MvT"/>

@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var topHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var bottomHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var dateLabelTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
@@ -34,11 +35,36 @@ class ViewController: UIViewController {
         timeLabel.isHidden = true
         dateLabel.isHidden = true
         nameLabel.isHidden = true
+        self.becomeFirstResponder()
+    }
+    
+//    override func canBecomeFirstResponder() -> Bool {
+//        return true
+//    }
+    
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        if(event?.subtype == UIEvent.EventSubtype.motionShake) {
+            imageIndex += 1
+            if imageIndex == 6 { imageIndex = 1 }
+            
+            UIView.transition(with: self.imageView,
+                              duration:1.0,
+                              options: UIView.AnimationOptions.transitionCrossDissolve,
+            animations: {
+                    self.setImage(index: self.imageIndex)
+                },
+                completion: {
+                    finished in
+                    self.topHeightConstraint.constant =    self.contraintConstant
+                    self.bottomHeightConstraint.constant = self.contraintConstant
+                }
+            )
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         UIView.transition(with: self.imageView,
-                          duration:0.5,
+                          duration:0.1,
                           options: UIView.AnimationOptions.transitionCrossDissolve,
                           animations: {
                             self.setImage(index: self.imageIndex)
@@ -51,7 +77,7 @@ class ViewController: UIViewController {
                         )
     }
 
-    @objc func updateLabel() {
+    @objc func getTime() {
         let date = Date()
         let calendar = Calendar.current
         let hour = calendar.component(.hour, from: date)
@@ -62,20 +88,25 @@ class ViewController: UIViewController {
     }
 
     func updateTexts() {
-        if UserDefaults.standard.bool(forKey: "enabled_preference_time_and_date") {
+        if UserDefaults.standard.bool(forKey: "enabled_preference_time") {
             Timer.scheduledTimer(timeInterval: 1, target: self,
-            selector: #selector(updateLabel), userInfo: nil, repeats: true)
-            updateLabel()
-
-            
+            selector: #selector(getTime), userInfo: nil, repeats: true)
+            getTime()
+            timeLabel.isHidden = false
+        } else {
+            timeLabel.isHidden = true
+        }
+        if UserDefaults.standard.bool(forKey: "enabled_preference_date") {
             let dateFormater = DateFormatter()
             dateFormater.setLocalizedDateFormatFromTemplate("EEEE d MMMM")
             dateLabel.text =  dateFormater.string(from: Date())
-
-            timeLabel.isHidden = false
             dateLabel.isHidden = false
+            if UserDefaults.standard.bool(forKey: "enabled_preference_time") {
+                dateLabelTopConstraint.constant = 66
+            } else {
+                dateLabelTopConstraint.constant = 31
+            }
         } else {
-            timeLabel.isHidden = true
             dateLabel.isHidden = true
         }
         if UserDefaults.standard.bool(forKey: "enabled_preference_name") {
@@ -107,24 +138,33 @@ class ViewController: UIViewController {
     }
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        imageIndex += 1
-        if imageIndex == 6 { imageIndex = 1 }
-        
         UIView.transition(with: self.imageView,
-                          duration:1.0,
+                          duration:0.2,
                           options: UIView.AnimationOptions.transitionCrossDissolve,
         animations: {
-                self.setImage(index: self.imageIndex)
+                self.timeLabel.isHidden = true
+                self.dateLabel.isHidden = true
+                self.nameLabel.isHidden = true
+            },
+            completion: nil
+        )
+
+        UIView.transition(with: self.imageView,
+                          duration:0.4,
+                          options: UIView.AnimationOptions.transitionCrossDissolve,
+        animations: {
+                self.imageView.image = nil
+                self.imageView.backgroundColor = UIColor.black
+                self.topView.backgroundColor = UIColor.black
+                self.bottomView.backgroundColor = UIColor.black
             },
             completion: {
                 finished in
-                self.topHeightConstraint.constant =    self.contraintConstant
-                self.bottomHeightConstraint.constant = self.contraintConstant
+                exit(0)
             }
         )
     }
     
-
 
     func setImage(index: Int) {
         let image = UIImage(named: "\(index)")
