@@ -9,7 +9,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController wantsFullScreenLayout="YES" id="BYZ-38-t0r" customClass="ViewController" customModule="Flamboyant_Flowers" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController wantsFullScreenLayout="YES" id="BYZ-38-t0r" customClass="ViewController" customModule="Flamboyant" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="D2W-eD-KM0"/>
                         <viewControllerLayoutGuide type="bottom" id="mJB-Rc-kpi"/>
@@ -24,7 +24,7 @@
                                     <constraint firstAttribute="height" constant="100" id="II3-jb-RDV"/>
                                 </constraints>
                             </view>
-                            <imageView autoresizesSubviews="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" image="2" translatesAutoresizingMaskIntoConstraints="NO" id="8Nz-Ty-AYf">
+                            <imageView autoresizesSubviews="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8Nz-Ty-AYf">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
@@ -36,8 +36,8 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lathyrus Latifolius" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="nNf-L0-XU5">
-                                <rect key="frame" x="40" y="761" width="334" height="71"/>
-                                <fontDescription key="fontDescription" name="Papyrus-Condensed" family="Papyrus" pointSize="46"/>
+                                <rect key="frame" x="40" y="771.5" width="334" height="60.5"/>
+                                <fontDescription key="fontDescription" name="Thonburi" family="Thonburi" pointSize="46"/>
                                 <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -94,7 +94,4 @@
             <point key="canvasLocation" x="139" y="138"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="2" width="3072" height="4608"/>
-    </resources>
 </document>

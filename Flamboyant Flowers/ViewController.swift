@@ -24,6 +24,21 @@ class ViewController: UIViewController {
     var imageHeight:CGFloat = 100
     var contraintConstant:CGFloat = 100
     
+    let numberOfFlowers = 12
+    let names = [
+        1: "Anemone coronaria L.",
+        2: "Nigella damascena",
+        3: "Astrantia",
+        4: "Centaurea Dealbata Willd.",
+        5: "Coreopsis Verticillata",
+        6: "Hydrangea",
+        7: "Linum grandiflorum",
+        8: "Echinacea Purpurea ",
+        9: "Phacelia Campanularia",
+        10: "Albizia",
+        11: "Xerochrysum Bracteatum Syn.",
+        12: "Monarda Didyma"]
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +51,9 @@ class ViewController: UIViewController {
         nameLabel.isHidden = true
         NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
         self.becomeFirstResponder()
+        let date = Date() // now
+        let cal = Calendar.current
+        imageIndex = (cal.ordinality(of: .day, in: .year, for: date)!) % numberOfFlowers + 1
     }
     
     //
@@ -47,6 +65,7 @@ class ViewController: UIViewController {
                           options: UIView.AnimationOptions.transitionCrossDissolve,
                           animations: {
                             self.setImageAndBackgroundColors(index: self.imageIndex)
+                            self.nameLabel.text = self.names[self.imageIndex % 10]
                           },
                           completion: {
                             finished in
@@ -68,14 +87,20 @@ class ViewController: UIViewController {
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if(event?.subtype == UIEvent.EventSubtype.motionShake) {
             imageIndex += 1
-            if imageIndex == 6 { imageIndex = 1 }
-            
+            if imageIndex == (numberOfFlowers+1) { imageIndex = 1 }
+            nameLabel.text = ""
+            let delay = 1.0
+            DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+                self.nameLabel.text = self.names[self.imageIndex % 10]
+            }
+
+            view.setNeedsDisplay()
             UIView.transition(with: self.imageView,
-                              duration:1.0,
+                              duration:delay,
                               options: UIView.AnimationOptions.transitionCrossDissolve,
             animations: {
-                    self.setImageAndBackgroundColors(index: self.imageIndex)
-                },
+                self.setImageAndBackgroundColors(index: self.imageIndex)
+            },
                 completion: {
                     finished in
                     self.topHeightConstraint.constant =    self.contraintConstant
@@ -189,13 +214,13 @@ class ViewController: UIViewController {
 
     func setImageAndBackgroundColors(index: Int) {
         let image = UIImage(named: "\(index)")
-        self.imageView.image = image
+        imageView.image = image
 
-        let widthRatio = self.imageView.bounds.size.width / (self.imageView.image?.size.width)!
-        let heightRatio = self.imageView.bounds.size.height / (self.imageView.image?.size.height)!
+        let widthRatio = imageView.bounds.size.width / (imageView.image?.size.width)!
+        let heightRatio = imageView.bounds.size.height / (imageView.image?.size.height)!
         let scale = min(widthRatio, heightRatio)
-        imageHeight = scale * (self.imageView.image?.size.height)!
-        contraintConstant = (self.imageView.bounds.size.height - self.imageHeight) / 2
+        imageHeight = scale * (imageView.image?.size.height)!
+        contraintConstant = (imageView.bounds.size.height - imageHeight) / 2
         if let (cTop, cBottom) = image?.averageColors {
             imageView.backgroundColor = cTop
             topView.backgroundColor = cTop
