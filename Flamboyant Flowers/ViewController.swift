@@ -31,17 +31,40 @@ class ViewController: UIViewController {
         topView.backgroundColor = UIColor.black
         bottomView.backgroundColor = UIColor.black
         imageView.image = nil
-        NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
         timeLabel.isHidden = true
         dateLabel.isHidden = true
         nameLabel.isHidden = true
+        NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
         self.becomeFirstResponder()
     }
     
-//    override func canBecomeFirstResponder() -> Bool {
-//        return true
-//    }
-    
+    //
+    // start: quickly blend in
+    //
+    override func viewDidAppear(_ animated: Bool) {
+        UIView.transition(with: self.imageView,
+                          duration:0.1,
+                          options: UIView.AnimationOptions.transitionCrossDissolve,
+                          animations: {
+                            self.setImageAndBackgroundColors(index: self.imageIndex)
+                          },
+                          completion: {
+                            finished in
+                            self.topHeightConstraint.constant =    self.contraintConstant
+                            self.bottomHeightConstraint.constant = self.contraintConstant
+                          }
+                        )
+    }
+
+    //
+    // hide everything else
+    //
+    override var prefersHomeIndicatorAutoHidden: Bool { return true }
+    override var prefersStatusBarHidden: Bool { return true }
+
+    //
+    // detect shake motion
+    //
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if(event?.subtype == UIEvent.EventSubtype.motionShake) {
             imageIndex += 1
@@ -51,7 +74,7 @@ class ViewController: UIViewController {
                               duration:1.0,
                               options: UIView.AnimationOptions.transitionCrossDissolve,
             animations: {
-                    self.setImage(index: self.imageIndex)
+                    self.setImageAndBackgroundColors(index: self.imageIndex)
                 },
                 completion: {
                     finished in
@@ -62,22 +85,8 @@ class ViewController: UIViewController {
         }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        UIView.transition(with: self.imageView,
-                          duration:0.1,
-                          options: UIView.AnimationOptions.transitionCrossDissolve,
-                          animations: {
-                            self.setImage(index: self.imageIndex)
-                          },
-                          completion: {
-                            finished in
-                            self.topHeightConstraint.constant =    self.contraintConstant
-                            self.bottomHeightConstraint.constant = self.contraintConstant
-                          }
-                        )
-    }
 
-    @objc func getTime() {
+    @objc func setTimeLabel() {
         let date = Date()
         let calendar = Calendar.current
         let hour = calendar.component(.hour, from: date)
@@ -87,11 +96,13 @@ class ViewController: UIViewController {
         timeLabel.text = hourString + ":" + minutesString
     }
 
-    func updateTexts() {
+    func layoutTexts() {
+        // 1 Second-Timer for updating the time label
         if UserDefaults.standard.bool(forKey: "enabled_preference_time") {
-            Timer.scheduledTimer(timeInterval: 1, target: self,
-            selector: #selector(getTime), userInfo: nil, repeats: true)
-            getTime()
+            let timer = Timer.scheduledTimer(timeInterval: 1, target: self,
+            selector: #selector(setTimeLabel), userInfo: nil, repeats: true)
+            timer.tolerance = 0.1 // using a bit less power
+            setTimeLabel() // in addtition, call it now
             timeLabel.isHidden = false
         } else {
             timeLabel.isHidden = true
@@ -102,9 +113,9 @@ class ViewController: UIViewController {
             dateLabel.text =  dateFormater.string(from: Date())
             dateLabel.isHidden = false
             if UserDefaults.standard.bool(forKey: "enabled_preference_time") {
-                dateLabelTopConstraint.constant = 66
+                dateLabelTopConstraint.constant = 66 // day below the time
             } else {
-                dateLabelTopConstraint.constant = 31
+                dateLabelTopConstraint.constant = 31 // only show day, a bit higher
             }
         } else {
             dateLabel.isHidden = true
@@ -117,6 +128,10 @@ class ViewController: UIViewController {
     }
 
     var firstTime = true
+    //
+    // delay the display of the texts for a few seconds
+    // (but only at app start)
+    //
     @objc func willEnterForeground(_ animated: Bool) {
         if firstTime {
             firstTime = false
@@ -125,7 +140,7 @@ class ViewController: UIViewController {
                                   duration:1.0,
                                   options: UIView.AnimationOptions.transitionCrossDissolve,
                 animations: {
-                        self.updateTexts()
+                        self.layoutTexts()
                     },
                     completion: {
                         finished in
@@ -133,11 +148,16 @@ class ViewController: UIViewController {
                 )
             }
         } else {
-            self.updateTexts()
+            self.layoutTexts()
         }
     }
 
+    //
+    // tab --> close app
+    //
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        // hide texts
         UIView.transition(with: self.imageView,
                           duration:0.2,
                           options: UIView.AnimationOptions.transitionCrossDissolve,
@@ -149,6 +169,7 @@ class ViewController: UIViewController {
             completion: nil
         )
 
+        // let flower disappear and close app
         UIView.transition(with: self.imageView,
                           duration:0.4,
                           options: UIView.AnimationOptions.transitionCrossDissolve,
@@ -166,7 +187,7 @@ class ViewController: UIViewController {
     }
     
 
-    func setImage(index: Int) {
+    func setImageAndBackgroundColors(index: Int) {
         let image = UIImage(named: "\(index)")
         self.imageView.image = image
 
@@ -181,41 +202,35 @@ class ViewController: UIViewController {
             bottomView.backgroundColor = cBottom
         }
     }
-    
-    override var prefersHomeIndicatorAutoHidden: Bool {
-        return true
-    }
-
-    override var prefersStatusBarHidden: Bool {
-        return true
-    }
 
 }
 
 extension UIImage {
     var averageColors: (UIColor?, UIColor?) {
+        // Calculate the averate color in a small rectabular area in the top left and in the bottom left
+        // The small area makes the calculation faster
         guard let inputImage = self.ciImage ?? CIImage(image: self) else { return (nil, nil) }
 
         var bitmap = [UInt8](repeating: 0, count: 4)
         let context = CIContext(options: [CIContextOption.workingColorSpace : kCFNull as Any])
         let outputImageRect = CGRect(x: 0, y: 0, width: 1, height: 1)
 
+        // small top rectangular
         var limitedRect: CGRect = inputImage.extent
         limitedRect.origin.y = 0.95 * limitedRect.size.height
         limitedRect.size.height *= 0.05
+        if limitedRect.size.height > 100 { limitedRect.size.height = 100 }
         limitedRect.origin.x = 0.0
         limitedRect.size.width *= 0.05
+        if limitedRect.size.width > 100 { limitedRect.size.width = 100 }
         guard let filterTop = CIFilter(name: "CIAreaAverage", parameters: [kCIInputImageKey: inputImage, kCIInputExtentKey: CIVector(cgRect: limitedRect)])
         else { return (nil, nil) }
         guard let outputImageTop = filterTop.outputImage else { return (nil, nil) }
         context.render(outputImageTop, toBitmap: &bitmap, rowBytes: 4, bounds: outputImageRect, format: CIFormat.RGBA8, colorSpace: nil)
         let topColor = UIColor(red: CGFloat(bitmap[0]) / 255, green: CGFloat(bitmap[1]) / 255, blue: CGFloat(bitmap[2]) / 255, alpha: CGFloat(bitmap[3] / 255))
 
-        
-        limitedRect = inputImage.extent
-        limitedRect.size.height *= 0.05
-        limitedRect.origin.x = 0.0
-        limitedRect.size.width *= 0.05
+        // small bottom rectangular (same size and x position)
+        limitedRect.origin.y = 0
         guard let filterBottom = CIFilter(name: "CIAreaAverage", parameters: [kCIInputImageKey: inputImage, kCIInputExtentKey: CIVector(cgRect: limitedRect)])
         else { return (nil, nil) }
         guard let outputImageBottom = filterBottom.outputImage else { return (nil, nil) }
@@ -224,26 +239,5 @@ extension UIImage {
         let bottomColor = UIColor(red: CGFloat(bitmap[0]) / 255, green: CGFloat(bitmap[1]) / 255, blue: CGFloat(bitmap[2]) / 255, alpha: CGFloat(bitmap[3] / 255))
         
         return (topColor, bottomColor)
-    }
-}
-
-extension UIImageView {
-    var contentClippingRect: CGRect {
-        guard let image = image else { return bounds }
-        guard contentMode == .scaleAspectFit else { return bounds }
-        guard image.size.width > 0 && image.size.height > 0 else { return bounds }
-
-        let scale: CGFloat
-        if image.size.width > image.size.height {
-            scale = bounds.width / image.size.width
-        } else {
-            scale = bounds.height / image.size.height
-        }
-
-        let size = CGSize(width: image.size.width * scale, height: image.size.height * scale)
-        let x = (bounds.width - size.width) / 2.0
-        let y = (bounds.height - size.height) / 2.0
-
-        return CGRect(x: x, y: y, width: size.width, height: size.height)
     }
 }
