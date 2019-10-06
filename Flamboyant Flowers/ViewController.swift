@@ -42,6 +42,14 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let userActivity = NSUserActivity(activityType: "com.joachimneuman.flamboyantFlowers")
+        userActivity.isEligibleForSearch = true
+        userActivity.isEligibleForPrediction = true
+        userActivity.title = "show a flamboyant flower"
+        
+        self.userActivity = userActivity
+        
         imageView.backgroundColor = UIColor.black
         topView.backgroundColor = UIColor.black
         bottomView.backgroundColor = UIColor.black
@@ -182,33 +190,37 @@ class ViewController: UIViewController {
     //
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         
-        // hide texts
-        UIView.transition(with: self.imageView,
-                          duration:0.2,
-                          options: UIView.AnimationOptions.transitionCrossDissolve,
-        animations: {
-                self.timeLabel.isHidden = true
-                self.dateLabel.isHidden = true
-                self.nameLabel.isHidden = true
-            },
-            completion: nil
-        )
-
-        // let flower disappear and close app
-        UIView.transition(with: self.imageView,
-                          duration:0.4,
-                          options: UIView.AnimationOptions.transitionCrossDissolve,
-        animations: {
-                self.imageView.image = nil
-                self.imageView.backgroundColor = UIColor.black
-                self.topView.backgroundColor = UIColor.black
-                self.bottomView.backgroundColor = UIColor.black
-            },
-            completion: {
-                finished in
-                exit(0)
-            }
-        )
+        let mySceneDelegate = self.view.window?.windowScene?.delegate as! SceneDelegate
+        if mySceneDelegate.startedFromShortCut {
+            // hide texts
+            UIView.transition(with: self.imageView,
+                              duration:0.2,
+                              options: UIView.AnimationOptions.transitionCrossDissolve,
+            animations: {
+                    self.timeLabel.isHidden = true
+                    self.dateLabel.isHidden = true
+                    self.nameLabel.isHidden = true
+                },
+                completion: nil
+            )
+            
+            // let flower disappear and close app
+            UIView.transition(with: self.imageView,
+                              duration:0.4,
+                              options: UIView.AnimationOptions.transitionCrossDissolve,
+            animations: {
+                    self.imageView.image = nil
+                    self.imageView.backgroundColor = UIColor.black
+                    self.topView.backgroundColor = UIColor.black
+                    self.bottomView.backgroundColor = UIColor.black
+                },
+                completion: {
+                    finished in
+                        exit(0)
+                    }
+            )
+                
+        } // if startedFromShortCut
     }
     
 

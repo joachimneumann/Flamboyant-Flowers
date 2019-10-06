@@ -14,6 +14,7 @@
 		AA5DE91A234298C300A72B01 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA5DE918234298C300A72B01 /* Main.storyboard */; };
 		AA5DE91C234298C400A72B01 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA5DE91B234298C400A72B01 /* Assets.xcassets */; };
 		AA5DE91F234298C400A72B01 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA5DE91D234298C400A72B01 /* LaunchScreen.storyboard */; };
+		AAA4C4C3234A882B00748A7E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AAA4C4C2234A882B00748A7E /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		AA5DE91B234298C400A72B01 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AA5DE91E234298C400A72B01 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AA5DE920234298C400A72B01 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AAA4C4C2234A882B00748A7E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +44,7 @@
 		AA5DE906234298C300A72B01 = {
 			isa = PBXGroup;
 			children = (
+				AAA4C4C2234A882B00748A7E /* Default-568h@2x.png */,
 				AA5DE911234298C300A72B01 /* Flamboyant Flowers */,
 				AA5DE910234298C300A72B01 /* Products */,
 			);
@@ -131,6 +134,7 @@
 				AA394AF12346194E00649C1C /* Settings.bundle in Resources */,
 				AA5DE91F234298C400A72B01 /* LaunchScreen.storyboard in Resources */,
 				AA5DE91C234298C400A72B01 /* Assets.xcassets in Resources */,
+				AAA4C4C3234A882B00748A7E /* Default-568h@2x.png in Resources */,
 				AA5DE91A234298C300A72B01 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
