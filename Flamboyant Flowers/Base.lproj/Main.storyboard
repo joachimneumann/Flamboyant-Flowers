@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="ipad12_9rounded" orientation="portrait" layout="fullscreen" appearance="light"/>
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -15,40 +15,43 @@
                         <viewControllerLayoutGuide type="bottom" id="mJB-Rc-kpi"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z50-Qt-VIp" userLabel="TopView">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="100"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="II3-jb-RDV"/>
                                 </constraints>
                             </view>
                             <imageView autoresizesSubviews="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8Nz-Ty-AYf">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8xI-ci-l4s" userLabel="BottomView">
-                                <rect key="frame" x="0.0" y="1266" width="1024" height="100"/>
+                                <rect key="frame" x="0.0" y="636" width="414" height="100"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="Hry-sk-RQa"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lathyrus Latifolius" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="nNf-L0-XU5">
-                                <rect key="frame" x="40" y="1255.5" width="944" height="60.5"/>
+                                <rect key="frame" x="40" y="645.66666666666663" width="334" height="60.333333333333371"/>
                                 <fontDescription key="fontDescription" name="Thonburi" family="Thonburi" pointSize="46"/>
                                 <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10:21" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="I1y-5l-a6J" userLabel="Time">
-                                <rect key="frame" x="20" y="35" width="984" height="75.5"/>
+                                <rect key="frame" x="20" y="35.000000000000007" width="374" height="75.666666666666686"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="75.670000000000002" id="hyT-Mv-U64"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="63"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thursday, 3. October" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="Vwk-yh-w9r" userLabel="Date">
-                                <rect key="frame" x="20" y="66.5" width="984" height="24"/>
+                                <rect key="frame" x="20" y="110.66666666666667" width="374" height="24.000000000000014"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -57,7 +60,6 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Z50-Qt-VIp" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="01H-Nk-kih"/>
-                            <constraint firstItem="Vwk-yh-w9r" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="66.5" id="9Gm-Xt-lHH"/>
                             <constraint firstAttribute="trailing" secondItem="8Nz-Ty-AYf" secondAttribute="trailing" id="Cea-3B-4QM"/>
                             <constraint firstAttribute="bottom" secondItem="8Nz-Ty-AYf" secondAttribute="bottom" id="DyP-GM-lLq"/>
                             <constraint firstItem="nNf-L0-XU5" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="GZ5-Iy-j4S"/>
@@ -74,6 +76,7 @@
                             <constraint firstItem="I1y-5l-a6J" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="35" id="kdr-kJ-HZd"/>
                             <constraint firstItem="8Nz-Ty-AYf" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="nIk-Pt-Osg"/>
                             <constraint firstAttribute="bottomMargin" secondItem="nNf-L0-XU5" secondAttribute="bottom" constant="30" id="r9Y-3d-ja1"/>
+                            <constraint firstItem="Vwk-yh-w9r" firstAttribute="top" secondItem="I1y-5l-a6J" secondAttribute="bottom" id="t9x-wf-1PW"/>
                             <constraint firstAttribute="trailingMargin" secondItem="nNf-L0-XU5" secondAttribute="trailing" constant="20" id="wUb-M4-4E8"/>
                         </constraints>
                     </view>
@@ -81,9 +84,9 @@
                         <outlet property="bottomHeightConstraint" destination="Hry-sk-RQa" id="txT-IG-zuw"/>
                         <outlet property="bottomView" destination="8xI-ci-l4s" id="CLo-XW-M2w"/>
                         <outlet property="dateLabel" destination="Vwk-yh-w9r" id="rJB-tJ-SeQ"/>
-                        <outlet property="dateLabelTopConstraint" destination="9Gm-Xt-lHH" id="s6G-oS-B0f"/>
                         <outlet property="imageView" destination="8Nz-Ty-AYf" id="Fm9-M7-Jez"/>
                         <outlet property="nameLabel" destination="nNf-L0-XU5" id="Xpi-qS-POh"/>
+                        <outlet property="timeHeightConstraint" destination="hyT-Mv-U64" id="gWP-Hn-Q5B"/>
                         <outlet property="timeLabel" destination="I1y-5l-a6J" id="ndx-YA-MvT"/>
                         <outlet property="topHeightConstraint" destination="II3-jb-RDV" id="ISc-Dc-esq"/>
                         <outlet property="topView" destination="Z50-Qt-VIp" id="APk-bC-wL9"/>

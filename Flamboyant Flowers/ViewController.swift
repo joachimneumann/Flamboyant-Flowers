@@ -14,11 +14,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var topHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var bottomHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var dateLabelTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var timeHeightConstraint: NSLayoutConstraint!
     
     var imageIndex = 1
     var imageHeight:CGFloat = 100
@@ -147,9 +147,9 @@ class ViewController: UIViewController {
             dateLabel.text =  dateFormater.string(from: Date())
             dateLabel.isHidden = false
             if UserDefaults.standard.bool(forKey: "enabled_preference_time") {
-                dateLabelTopConstraint.constant = timeLabel.frame.maxY
+                timeHeightConstraint.constant = 75.5
             } else {
-                dateLabelTopConstraint.constant = 31 // only show day
+                timeHeightConstraint.constant = 30 // only show day
             }
         } else {
             dateLabel.isHidden = true
