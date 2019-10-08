@@ -99,7 +99,8 @@ class ViewController: UIViewController {
             nameLabel.text = ""
             let delay = 1.0
             DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
-                self.nameLabel.text = self.names[self.imageIndex % 10]
+                
+                self.nameLabel.text = self.names[self.imageIndex]
             }
 
             view.setNeedsDisplay()
@@ -146,9 +147,9 @@ class ViewController: UIViewController {
             dateLabel.text =  dateFormater.string(from: Date())
             dateLabel.isHidden = false
             if UserDefaults.standard.bool(forKey: "enabled_preference_time") {
-                dateLabelTopConstraint.constant = 66 // day below the time
+                dateLabelTopConstraint.constant = timeLabel.frame.maxY
             } else {
-                dateLabelTopConstraint.constant = 31 // only show day, a bit higher
+                dateLabelTopConstraint.constant = 31 // only show day
             }
         } else {
             dateLabel.isHidden = true
