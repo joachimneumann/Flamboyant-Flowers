@@ -24,7 +24,7 @@ class ViewController: UIViewController {
     var imageHeight:CGFloat = 100
     var contraintConstant:CGFloat = 100
     
-    let numberOfFlowers = 12
+    let numberOfFlowers = 11
     let names = [
         1: "Anemone coronaria L.",
         2: "Nigella damascena",
@@ -36,8 +36,7 @@ class ViewController: UIViewController {
         8: "Echinacea Purpurea ",
         9: "Phacelia Campanularia",
         10: "Albizia",
-        11: "Xerochrysum Bracteatum Syn.",
-        12: "Monarda Didyma"]
+        11: "Xerochrysum Bracteatum Syn."]
 
 
     override func viewDidLoad() {
