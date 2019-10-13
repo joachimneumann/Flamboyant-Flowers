@@ -19,6 +19,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var timeHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var setupButton: UIButton!
     
     var imageIndex = 1
     var imageHeight:CGFloat = 100
@@ -61,12 +62,22 @@ class ViewController: UIViewController {
         let date = Date() // now
         let cal = Calendar.current
         imageIndex = (cal.ordinality(of: .day, in: .year, for: date)!) % numberOfFlowers + 1
+        
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
-    
+
+    override func viewWillAppear(_ animated: Bool) {
+        if UserDefaults.standard.bool(forKey: "show_setup_instructions") {
+            setupButton.isHidden = false
+        } else {
+            setupButton.isHidden = true
+        }
+    }
     //
     // start: quickly blend in
     //
     override func viewDidAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
         UIView.transition(with: self.imageView,
                           duration:0.1,
                           options: UIView.AnimationOptions.transitionCrossDissolve,
@@ -87,6 +98,10 @@ class ViewController: UIViewController {
     //
     override var prefersHomeIndicatorAutoHidden: Bool { return true }
     override var prefersStatusBarHidden: Bool { return true }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+    }
 
     //
     // detect shake motion
@@ -118,7 +133,6 @@ class ViewController: UIViewController {
         }
     }
     
-
     @objc func setTimeLabel() {
         let date = Date()
         let calendar = Calendar.current
@@ -166,6 +180,11 @@ class ViewController: UIViewController {
     // (but only at app start)
     //
     @objc func willEnterForeground(_ animated: Bool) {
+        if UserDefaults.standard.bool(forKey: "show_setup_instructions") {
+            setupButton.isHidden = false
+        } else {
+            setupButton.isHidden = true
+        }
         if firstTime {
             firstTime = false
             DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
@@ -192,6 +211,11 @@ class ViewController: UIViewController {
         
         let mySceneDelegate = self.view.window?.windowScene?.delegate as! SceneDelegate
         if mySceneDelegate.startedFromShortCut {
+            
+            // hide manual button
+            UserDefaults.standard.set(false, forKey: "show_setup_instructions")
+            setupButton.isHidden = true
+            
             // hide texts
             UIView.transition(with: self.imageView,
                               duration:0.2,
