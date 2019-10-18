@@ -36,8 +36,8 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lathyrus Latifolius" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="nNf-L0-XU5">
-                                <rect key="frame" x="40" y="645.66666666666663" width="334" height="60.333333333333371"/>
-                                <fontDescription key="fontDescription" name="Thonburi" family="Thonburi" pointSize="46"/>
+                                <rect key="frame" x="40" y="651" width="334" height="55"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="46"/>
                                 <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
