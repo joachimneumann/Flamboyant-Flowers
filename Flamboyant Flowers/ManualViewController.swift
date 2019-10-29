@@ -15,12 +15,12 @@ class ManualViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let pdfLoc = URL(fileURLWithPath:Bundle.main.path(forResource: "manual", ofType:"pdf")!)
-        let request = URLRequest(url: pdfLoc);
-        webKitView.load(request);
+        let pdfLoc = URL(fileURLWithPath: Bundle.main.path(forResource: "manual", ofType: "pdf")!)
+        let request = URLRequest(url: pdfLoc)
+        webKitView.load(request)
 
         self.navigationController?.navigationBar.tintColor = .orange
         self.navigationController?.navigationBar.barTintColor = .black
     }
-    
+
 }

@@ -20,7 +20,7 @@
 			<key>Key</key>
 			<string>enabled_preference_name</string>
 			<key>DefaultValue</key>
-			<false/>
+			<true/>
 		</dict>
 		<dict>
 			<key>Type</key>
