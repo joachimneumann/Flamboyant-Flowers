@@ -208,7 +208,7 @@ class ViewController: UIViewController {
     //
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
 
-        if mySceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate {
+        if let mySceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate {
             if mySceneDelegate.startedFromShortCut {
 
                 // hide manual button
