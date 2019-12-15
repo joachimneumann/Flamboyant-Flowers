@@ -164,11 +164,12 @@ class ViewController: UIViewController {
         } else {
             dateLabel.isHidden = true
         }
-        if UserDefaults.standard.bool(forKey: "enabled_preference_name") {
-            nameLabel.isHidden = false
-        } else {
-            nameLabel.isHidden = true
-        }
+        // name disabled for now
+//        if UserDefaults.standard.bool(forKey: "enabled_preference_name") {
+//            nameLabel.isHidden = false
+//        } else {
+//            nameLabel.isHidden = true
+//        }
     }
 
     var firstTime = true
@@ -247,7 +248,7 @@ class ViewController: UIViewController {
     }
 
     func setImageAndBackgroundColors(index: Int) {
-        let image = UIImage(named: "\(index)")
+        let image = UIImage(named: "\(index).compressed.jpg")
         imageView.image = image
 
         let widthRatio = imageView.bounds.size.width / (imageView.image?.size.width)!
