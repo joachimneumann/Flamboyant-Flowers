@@ -25,7 +25,7 @@ class ViewController: UIViewController {
     var imageHeight: CGFloat = 100
     var contraintConstant: CGFloat = 100
 
-    let numberOfFlowers = 11
+    let numberOfFlowers = 339
     let names = [
         1: "Anemone coronaria L.",
         2: "Nigella damascena",
